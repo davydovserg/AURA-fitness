@@ -53,7 +53,7 @@ nav.menu a:hover{opacity:1}
 
 /* HERO */
 .hero{height:100svh;min-height:640px;overflow:hidden;color:var(--ink)}
-.hero .bg{position:absolute;inset:-4%;background:url(img/hero-poster.jpg) center/cover;transform:scale(1.06);animation:heroIn 2.6s var(--ease) forwards}
+.hero .bg{position:absolute;inset:-4%;background:url(img/hero-poster.jpg) center/cover;}
 @keyframes heroIn{to{transform:scale(1)}}
 .haloA{position:absolute;z-index:1;left:66%;top:48%;width:46vw;height:78vh;translate:-50% -50%;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse,rgba(255,232,200,.0) 18%,rgba(255,214,170,.8) 38%,rgba(240,170,150,.4) 55%,rgba(240,170,150,0) 72%);mix-blend-mode:screen;opacity:0;transform:scale(.6);animation:halo 3.2s 1s var(--ease) forwards,haloB 6s 4.2s ease-in-out infinite}
 @keyframes halo{to{opacity:1;transform:scale(1)}}
@@ -646,7 +646,7 @@ const hdr=document.querySelector('header'),mcta=document.getElementById('mcta');
 addEventListener('scroll',()=>{hdr.classList.toggle('solid',scrollY>40);mcta.classList.toggle('show',scrollY>innerHeight*.7)},{passive:true});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const hv=document.getElementById('hv');if(hv)hv.addEventListener('playing',()=>document.querySelector('.haloA').style.display='none');if(hv){hv.playbackRate=.8;hv.addEventListener('loadedmetadata',()=>hv.playbackRate=.8)}
+const hv=document.getElementById('hv');if(hv)hv.addEventListener('playing',()=>document.querySelector('.haloA').style.display='none');
 const glow=document.getElementById('glow');
 document.querySelector('.hero').addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
 
