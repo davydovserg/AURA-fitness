@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Аура движения — вариант 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4ece4;--ink:#2a1f22;--rose:#c9837f;--line:#2a1f22}
+*{margin:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;height:100vh;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:26px 5vw;font-size:13px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(42,31,34,.15)}
+nav b{font-family:'Playfair Display';font-weight:500;font-size:22px;letter-spacing:0;text-transform:none}
+nav span{opacity:.6}
+.wrap{display:grid;grid-template-columns:1.1fr .9fr;height:calc(100vh - 78px)}
+.left{padding:6vh 5vw;display:flex;flex-direction:column;justify-content:space-between}
+.prog{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose)}
+h1{font-family:'Playfair Display';font-weight:500;font-size:clamp(56px,8.5vw,140px);line-height:.92;letter-spacing:-.02em}
+h1 i{font-weight:400;color:var(--rose)}
+.acts{display:grid;grid-template-columns:repeat(5,auto);gap:0;border-top:1px solid rgba(42,31,34,.2);font-size:13px}
+.acts div{padding:14px 14px 0 0}
+.acts small{display:block;font-size:10px;letter-spacing:.2em;opacity:.5;margin-bottom:4px}
+.row{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.btn{padding:18px 30px;background:var(--ink);color:var(--bg);text-decoration:none;border-radius:40px;font-weight:600;font-size:14px;letter-spacing:.04em}
+.row p{font-size:13px;opacity:.7;line-height:1.5}
+.right{position:relative;background:#ead9cc;overflow:hidden}
+.right svg{position:absolute;inset:0;width:100%;height:100%}
+.draw{fill:none;stroke:var(--line);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:2600;stroke-dashoffset:2600;animation:d 4.5s 0.3s ease-in-out forwards}
+.draw.r{stroke:var(--rose);stroke-width:1.4;animation-delay:1.6s}
+@keyframes d{to{stroke-dashoffset:0}}
+.tag{position:absolute;font-family:'Playfair Display';font-style:italic;font-size:clamp(18px,2vw,26px);opacity:0;animation:f 1s forwards}
+.tag.a{left:10%;top:12%;animation-delay:3.2s}.tag.b{right:8%;bottom:14%;animation-delay:3.8s}
+@keyframes f{to{opacity:.85}}
+@media(max-width:800px){.wrap{grid-template-columns:1fr;grid-template-rows:auto 40vh}.acts{grid-template-columns:repeat(3,auto)}nav span{display:none}body{overflow:auto;height:auto}}
+</style></head><body>
+<nav><b>Аура движения</b><span>Программа сезона 2026/27</span><span>Новороссийск</span></nav>
+<div class="wrap">
+<div class="left">
+<div class="prog">Студия Екатерины · балетная школа тела</div>
+<h1>Тело,<br>которое <i>танцует</i><br>даже в покое</h1>
+<div>
+<div class="acts"><div><small>I</small>Фитнес</div><div><small>II</small>Пилатес</div><div><small>III</small>Растяжка</div><div><small>IV</small>МФР</div><div><small>V</small>Балет</div></div>
+<div class="row" style="margin-top:28px"><a class="btn" href="#">Записаться на первый урок</a><p>просп. Дзержинского, 211/2<br>малые группы, у станка и на коврике</p></div>
+</div>
+</div>
+<div class="right">
+<svg viewBox="0 0 500 700" preserveAspectRatio="xMidYMid meet">
+<!-- one continuous line: dancer in arabesque -->
+<path class="draw" d="M60 640 C140 600 200 560 232 500 C252 462 250 420 246 380 C243 350 250 320 268 300 C285 282 300 262 296 238 C292 214 270 204 252 214 C232 226 236 254 256 262 C280 272 300 262 312 246 C340 210 380 180 440 150 M268 300 C230 330 170 350 90 362 M246 380 C230 440 236 520 262 600 C270 625 268 640 254 652 M250 430 C300 420 360 400 420 360"/>
+<path class="draw r" d="M40 520 C160 470 330 470 470 520 M70 560 C180 520 320 520 440 560"/>
+</svg>
+<div class="tag a">port de bras</div><div class="tag b">arabesque</div>
+</div>
+</div>
+</body></html>

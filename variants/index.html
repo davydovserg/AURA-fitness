@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Аура — выбор стиля</title>
+<style>
+body{margin:0;background:#1a1a1a;color:#eee;font-family:system-ui,sans-serif;padding:24px 16px}
+h1{font-size:20px;font-weight:600;margin:0 0 18px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.c{background:#262626;border-radius:12px;overflow:hidden}
+.f{position:relative;aspect-ratio:16/10;overflow:hidden}
+iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none}
+.c p{margin:0;padding:12px 16px;font-size:14px;line-height:1.45}
+.c a{color:#ffb3d1}
+</style></head><body>
+<h1>Аура движения — 3 варианта первого экрана</h1>
+<div class="g">
+<div class="c"><div class="f"><iframe src="v1.html"></iframe></div><p><b>1. Аура-дыхание</b> — тёмный, светящееся облако цветов, кольцо «дышит» 4 с вдох / 4 с выдох. <a href="v1.html" target="_blank">открыть</a></p></div>
+<div class="c"><div class="f"><iframe src="v2.html"></iframe></div><p><b>2. Балетная программа</b> — светлый, как театральная программка, одна линия рисует балерину в арабеске. <a href="v2.html" target="_blank">открыть</a></p></div>
+<div class="c"><div class="f"><iframe src="v3.html"></iframe></div><p><b>3. Кинетика</b> — яркий, бегущие строки направлений и парящая сфера, энергично и молодо. <a href="v3.html" target="_blank">открыть</a></p></div>
+</div>
+<script>function fit(){document.querySelectorAll('.f').forEach(f=>{f.querySelector('iframe').style.transform='scale('+f.clientWidth/1440+')'})}addEventListener('resize',fit);fit()</script>
+</body></html>
