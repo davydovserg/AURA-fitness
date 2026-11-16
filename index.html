@@ -55,6 +55,7 @@ nav.menu a:hover{opacity:1}
 .hero{height:100svh;min-height:640px;overflow:hidden;color:var(--ink)}
 .hero .bg{position:absolute;inset:-4%;background:url(img/hero.jpg) center/cover;transform:scale(1.06);animation:heroIn 2.6s var(--ease) forwards}
 @keyframes heroIn{to{transform:scale(1)}}
+.hero .bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(247,240,233,.9) 0,rgba(247,240,233,.55) 30%,rgba(247,240,233,0) 50%),linear-gradient(0deg,rgba(247,240,233,.9) 0,rgba(247,240,233,0) 26%)}
 .glow{position:absolute;z-index:2;width:520px;height:520px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,226,196,.75) 0,rgba(233,185,168,.35) 35%,rgba(233,185,168,0) 68%);mix-blend-mode:soft-light;translate:-50% -50%;left:70%;top:45%;transition:left 1.2s var(--ease),top 1.2s var(--ease)}
 .hero .wrap{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding-top:60px}
@@ -173,13 +174,25 @@ nav.menu a:hover{opacity:1}
 /* SCHEDULE */
 .sched{padding:clamp(90px,11vw,150px) 0}
 .sgrid{display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start;margin-top:44px}
-.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:18px}
+.days{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:18px}
 .days button{border:1px solid rgba(30,21,24,.14);background:var(--paper);border-radius:20px;padding:12px 4px 10px;cursor:pointer;font-family:Manrope;color:var(--ink);transition:all .3s var(--ease)}
 .days button small{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
 .days button b{display:block;font-family:'Cormorant Garamond';font-size:32px;line-height:1.05;font-weight:600}
 .days button em{display:block;font-style:normal;font-size:10px;font-weight:700;color:var(--roset);height:13px}
 .days button.on{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-3px);box-shadow:0 16px 30px -16px rgba(30,21,24,.6)}
 .days button.on small,.days button.on em{color:var(--rose2)}
+.days .cal{position:relative;border:1px dashed rgba(30,21,24,.3);background:transparent;border-radius:20px;padding:12px 4px 10px;cursor:pointer;text-align:center;transition:all .3s var(--ease)}
+.days .cal small{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.days .cal b{display:block;font-family:'Cormorant Garamond';font-size:28px;line-height:1.15;font-weight:600}
+.days .cal em{display:block;font-style:normal;font-size:10px;font-weight:700;color:var(--roset);height:13px}
+.days>*,.sgrid>*,.quiz .grid>*,.dlist>*,.coach .grid>*,.faq .grid>*,.contacts>*{min-width:0}
+.days .cal{overflow:hidden}
+.days .cal input{position:absolute;inset:0;opacity:0;width:100%;height:100%;min-width:0;cursor:pointer;border:0;padding:0;-webkit-appearance:none;appearance:none}
+.field input{min-width:0;max-width:100%;-webkit-appearance:none;appearance:none;min-height:52px}
+.mbox{overflow-x:hidden}
+html,body{max-width:100%;overflow-x:hidden}
+.days .cal.on{background:var(--ink);color:var(--paper);border:1px solid var(--ink);transform:translateY(-3px)}
+.days .cal.on small,.days .cal.on em{color:var(--rose2)}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
 .filters button{padding:10px 16px;border-radius:30px;border:1px solid rgba(30,21,24,.16);background:transparent;font:600 13px Manrope;color:var(--ink);cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
 .filters button i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--ink))}
@@ -239,12 +252,24 @@ nav.menu a:hover{opacity:1}
 .coach li{font-size:15px;color:var(--ink2);padding-left:22px;position:relative}
 .coach li::before{content:"";position:absolute;left:0;top:9px;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--rose)}
 
-/* GALLERY */
-.gal{padding:clamp(90px,11vw,150px) 0 0;overflow:hidden}
-.strip{display:flex;gap:18px;margin-top:50px;width:max-content;animation:mq 60s linear infinite}
-.strip:hover{animation-play-state:paused}
-.strip img{height:clamp(280px,34vw,440px);aspect-ratio:3/4;object-fit:cover;border-radius:var(--r)}
-.strip img:nth-child(odd){border-radius:200px 200px var(--r) var(--r)}
+/* GALLERY / STUDIO */
+.gal{padding:clamp(90px,11vw,150px) 0 0}
+.gal .head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:48px}
+.gal .head p{max-width:400px;color:var(--ink2)}
+.bento{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:repeat(2,minmax(240px,26vw));gap:16px}
+.tile{position:relative;border-radius:var(--r);overflow:hidden;background:var(--sand)}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.tile:hover img{transform:scale(1.05)}
+.tile.big{grid-row:span 2;border-radius:260px 260px var(--r) var(--r)}
+.tile .cap{position:absolute;left:16px;bottom:16px;right:16px;display:flex;gap:10px;align-items:center;background:rgba(255,250,245,.92);backdrop-filter:blur(10px);border-radius:18px;padding:12px 16px}
+.tile .cap b{display:block;font-size:15px;font-weight:700;line-height:1.2}
+.tile .cap span{display:block;font-size:13px;color:var(--ink2);line-height:1.35}
+.tile .cap i{flex:none;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,#fff3e6 0,var(--rose2) 50%,rgba(201,139,134,.2) 100%)}
+.tile.txt{background:var(--plum);color:var(--cream);padding:30px;display:flex;flex-direction:column;justify-content:space-between}
+.tile.txt::before{content:"";position:absolute;width:300px;height:300px;right:-120px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,196,.45),rgba(233,185,168,0) 70%);animation:breathe 8s ease-in-out infinite}
+.tile.txt b{position:relative;font-family:'Cormorant Garamond';font-size:clamp(54px,6vw,84px);line-height:.9;font-weight:600}
+.tile.txt p{position:relative;font-size:16px;color:rgba(247,240,233,.88)}
+.tile.txt .btn{position:relative;--b:var(--cream);color:var(--ink);align-self:flex-start;margin-top:16px;padding:13px 20px;font-size:14px}
 
 /* FAQ */
 .faq{padding:clamp(90px,11vw,150px) 0}
@@ -284,6 +309,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .mbox{width:min(520px,100%);background:var(--paper);border-radius:32px;padding:clamp(26px,4vw,42px);position:relative;transform:translateY(30px) scale(.97);transition:transform .5s var(--ease);max-height:calc(100svh - 32px);overflow:auto}
 .modal.open .mbox{transform:none}
 .mbox .x{position:absolute;right:18px;top:18px;width:40px;height:40px;border-radius:50%;border:0;background:var(--sand);font-size:20px;cursor:pointer}
+.mbox .fr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .mbox h3{font-family:'Cormorant Garamond';font-size:42px;font-weight:600;line-height:1;margin:8px 0 8px}
 .mbox>p{color:var(--ink2);font-size:15px;margin-bottom:22px}
 .field{display:block;margin-bottom:14px}
@@ -306,6 +332,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .hero .bg{margin-top:64px}
   .hero{height:auto;min-height:0;overflow:visible}
   .hero .bg{position:relative;inset:auto;height:62svh;min-height:400px;background-position:62% 30%;animation:none;transform:none}
+  .hero .bg video{object-position:62% 30%}
   .hero::before{inset:auto 0 auto 0;top:calc(62svh - 140px);height:140px;background:linear-gradient(0deg,var(--cream),rgba(247,240,233,0))}
   .glow{display:none}
   .hero .wrap{height:auto;padding:0 0 34px;margin-top:-58px;justify-content:flex-start}
@@ -323,7 +350,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .facts{grid-template-columns:1fr 1fr}
   .quiz .grid,.dlist,.coach .grid,.faq .grid,.contacts{grid-template-columns:1fr}
   .dphoto{display:none}
-  .dlist li .mimg{display:block;border-radius:22px;aspect-ratio:4/3;object-fit:cover;margin-top:18px;width:100%}
+  .dlist li .mimg{display:block;border-radius:22px;aspect-ratio:4/3;max-height:440px;object-fit:cover;margin-top:18px;width:100%}
   .dlist li .d>div{padding-left:0}
   .steps{grid-template-columns:1fr 1fr;gap:40px 22px}.steps::before{display:none}
   .stages{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 10px;scrollbar-width:none}
@@ -331,8 +358,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .rail{display:none}
   .track{margin-top:44px}
   .sgrid{grid-template-columns:1fr;gap:28px}
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:none;gap:12px}
+  .tile{aspect-ratio:3/4}
+  .tile.big{grid-column:1/-1;grid-row:auto;aspect-ratio:4/5;border-radius:200px 200px var(--r) var(--r)}
+  .tile.txt{grid-column:1/-1;aspect-ratio:auto;padding:26px;gap:12px}
+  .tile .cap{left:10px;right:10px;bottom:10px;padding:10px 12px;border-radius:14px}
+  .tile .cap i{display:none}
+  .tile .cap b{font-size:14px}.tile .cap span{font-size:12px}
   .how{position:static}
-  .days{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:64px;overflow-x:auto;margin:0 -16px 14px;padding:4px 16px 8px;scrollbar-width:none}
+  .days{grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 14px}
+  .days button,.days .cal{padding:9px 2px 7px}
+  .days button b{font-size:28px}
   .filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px 18px;padding:0 16px;scrollbar-width:none}
   .filters button{flex:none}
   .cls{grid-template-columns:70px 1fr;gap:6px 14px;padding:16px 16px 16px 20px}
@@ -370,7 +406,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 </header>
 
 <section class="hero">
-  <div class="bg"></div>
+  <div class="bg"><video id="hv" muted playsinline autoplay preload="auto" poster="img/hero.jpg"><source src="img/hero.mp4" type="video/mp4"></video></div>
   <div class="glow" id="glow"></div>
   <div class="wrap">
     <div class="eyebrow">Студия Екатерины · Новороссийск</div>
@@ -488,10 +524,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
 </div></section>
 
-<section class="gal">
-  <div class="wrap reveal"><div class="eyebrow">Атмосфера</div><br><h2>Студия, в которую <i>хочется</i></h2></div>
-  <div class="strip" id="strip"></div>
-</section>
+<section class="gal"><div class="wrap">
+  <div class="head reveal">
+    <div><div class="eyebrow">Атмосфера</div><br><h2>Студия, в которую <i>хочется</i></h2></div>
+    <p>Светлый зал с арочными окнами, тёплый свет и тишина. Здесь хочется дышать глубже, двигаться мягче и возвращаться снова.</p>
+  </div>
+  <div class="bento reveal">
+    <div class="tile big"><img src="img/ballet.jpg" alt="Балетный класс у станка" loading="lazy"><div class="cap"><i></i><div><b>Балетный станок</b><span>классика и боди-балет для взрослых</span></div></div></div>
+    <div class="tile"><img src="img/pilates.jpg" alt="Пилатес" loading="lazy"><div class="cap"><i></i><div><b>Много света</b><span>арочные окна во всю стену</span></div></div></div>
+    <div class="tile txt"><b>до 8</b><div><p>человек в группе — тренер видит и поправляет каждую.</p><button class="btn" data-book="Пробное занятие">Прийти на пробное</button></div></div>
+    <div class="tile"><img src="img/mfr.jpg" alt="МФР" loading="lazy"><div class="cap"><i></i><div><b>Всё есть в студии</b><span>коврики, роллы, мячи, гантели</span></div></div></div>
+    <div class="tile"><img src="img/feet.jpg" alt="Пуанты" loading="lazy"><div class="cap"><i></i><div><b>Тёплый пол</b><span>можно заниматься в носочках</span></div></div></div>
+  </div>
+</div></section>
 
 <section class="faq"><div class="wrap grid">
   <div class="reveal"><div class="eyebrow">Вопросы</div><br><h2>Перед <i>первым</i> занятием</h2></div>
@@ -564,6 +609,7 @@ const hdr=document.querySelector('header'),mcta=document.getElementById('mcta');
 addEventListener('scroll',()=>{hdr.classList.toggle('solid',scrollY>40);mcta.classList.toggle('show',scrollY>innerHeight*.7)},{passive:true});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const hv=document.getElementById('hv');if(hv){hv.playbackRate=.8;hv.addEventListener('loadedmetadata',()=>hv.playbackRate=.8)}
 const glow=document.getElementById('glow');
 document.querySelector('.hero').addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
 
@@ -584,12 +630,16 @@ const DESC={fitness:'Сила и тонус, лёгкие гантели',pilate
 const days=document.getElementById('days'),filt=document.getElementById('filt'),cls=document.getElementById('classes');
 const today=new Date();today.setHours(0,0,0,0);
 const D=[...Array(7)].map((_,k)=>{const d=new Date(today);d.setDate(d.getDate()+k);return d});
-let selDay=0,selDir='all';
-days.innerHTML=D.map((d,k)=>`<button data-k="${k}"><small>${WD[d.getDay()]}</small><b>${d.getDate()}</b><em>${k==0?'сегодня':k==1?'завтра':''}</em></button>`).join('');
+let selDay=0,selDir='all',custom=null;
+days.innerHTML=D.map((d,k)=>`<button data-k="${k}"><small>${WD[d.getDay()]}</small><b>${d.getDate()}</b><em>${k==0?'сегодня':k==1?'завтра':''}</em></button>`).join('')+`<label class="cal" id="calb"><small>другая</small><b>📅</b><em>дата</em><input type="date" id="cali"></label>`;
+const cali=document.getElementById('cali'),calb=document.getElementById('calb');const iso=d=>new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);cali.min=iso(today);{const mx=new Date(today);mx.setDate(mx.getDate()+90);cali.max=iso(mx)}
+calb.addEventListener('click',e=>{if(e.target!==cali){try{cali.showPicker()}catch(_){cali.focus()}}});
+cali.addEventListener('change',()=>{if(!cali.value)return;const [y,m,dd]=cali.value.split('-');custom=new Date(+y,m-1,+dd);selDay=-1;renderCls()});
 filt.innerHTML='<button class="on" data-f="all">Все</button>'+DIRS.map(d=>`<button data-f="${d.id}" style="--c:${d.c}"><i></i>${d.name}</button>`).join('');
 function renderCls(){
-  days.querySelectorAll('button').forEach((b,k)=>b.classList.toggle('on',k==selDay));
-  const d=D[selDay],list=(SCHED[WD[d.getDay()]]||[]).filter(x=>selDir=='all'||x[1]==selDir);
+  days.querySelectorAll('button').forEach((b,k)=>b.classList.toggle('on',k==selDay));calb.classList.toggle('on',selDay<0);
+  if(selDay<0){calb.querySelector('small').textContent=WD[custom.getDay()];calb.querySelector('b').textContent=custom.getDate();calb.querySelector('em').textContent=MON[custom.getMonth()].slice(0,3)}
+  const d=selDay<0?custom:D[selDay],list=(SCHED[WD[d.getDay()]]||[]).filter(x=>selDir=='all'||x[1]==selDir);
   const now=new Date(),label=`${WD[d.getDay()]}, ${d.getDate()} ${MON[d.getMonth()]}`;
   cls.innerHTML=list.length?list.map(([t,id],n)=>{const x=byId[id],[h,m]=t.split(':');const st=new Date(d);st.setHours(+h,+m);const past=st<now;
     return `<div class="cls${past?' past':''}" style="--c:${x.c};animation-delay:${n*60}ms"><div class="tm"><b>${t}</b><small>55 минут</small></div><div><h4>${x.name}</h4><p>${DESC[id]}</p><span class="lv">${past?'уже прошло':'любой уровень · группа'}</span></div><button class="btn" data-book="${x.name}" data-time="${label} · ${t}" data-c="${x.c}">Записаться</button></div>`}).join('')
@@ -605,10 +655,6 @@ const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.targ
 stg.forEach(x=>io2.observe(x));
 const fin=document.getElementById('final');new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&fin.classList.add('in')),{threshold:.2}).observe(fin);
 addEventListener('scroll',()=>{const r=document.getElementById('stages').getBoundingClientRect();const p=Math.min(1,Math.max(0,(innerHeight*.8-r.top)/(r.height+innerHeight*.2)));rail.style.width=p*100+'%'},{passive:true});
-
-/* ===== GALLERY ===== */
-const G=['hero','pilates','stretch','ballet','mfr','fitness','feet'];
-document.getElementById('strip').innerHTML=[...G,...G].map(g=>`<img src="img/${g}.jpg" alt="" loading="lazy">`).join('');
 
 /* ===== QUIZ ===== */
 const QZ=[
@@ -636,11 +682,11 @@ renderQ();
 /* ===== BOOKING MODAL ===== */
 const modal=document.getElementById('modal'),mbox=document.getElementById('mbox');
 function openBook(dir='',time='',c=''){
-  mbox.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="eyebrow">Запись</div><h3>${dir||'Пробное занятие'}</h3>${time?`<div class="msum" style="--c:${c||'var(--rose)'}"><i></i><div><b>${time}</b><span>Место закрепим после звонка администратора</span></div></div>`:''}<p>Оставьте контакты — администратор перезвонит в течение 15 минут в рабочее время и подтвердит запись.</p>
+  mbox.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="eyebrow">Запись</div><h3>${dir||'Пробное занятие'}</h3>${time?`<div class="msum" style="--c:${c||'var(--rose)'}"><i></i><div><b>${time}</b><span>Администратор свяжется с вами и подтвердит бронь</span></div></div>`:''}<p>${time?'Оставьте имя и телефон — мы забронируем для вас место.':'Выберите удобную дату и оставьте контакты — администратор свяжется с вами и подтвердит бронь.'}</p>
   <form id="bf"><label class="field"><span>Имя</span><input name="name" required autocomplete="given-name" placeholder="Как к вам обращаться"></label>
   <label class="field"><span>Телефон</span><input name="phone" required type="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"></label>
   <label class="field"><span>Направление</span><select name="dir"><option value="">Подскажите, что выбрать</option>${['Пробное занятие','Абонемент 8 занятий','Персональная тренировка',...DIRS.map(d=>d.name)].map(n=>`<option ${n==dir?'selected':''}>${n}</option>`).join('')}</select></label>
-  <input type="hidden" name="time" value="${time}">
+  ${time?`<input type="hidden" name="time" value="${time}">`:`<label class="field"><span>Удобная дата</span><input name="date" type="date" min="${new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10)}"></label><label class="field"><span>Удобное время</span><select name="time"><option value="">Любое</option><option>Утро (9:00–12:00)</option><option>День (12:00–17:00)</option><option>Вечер (17:00–21:00)</option></select></label>`}
   <button class="btn" type="submit"><span class="dot"></span>Записаться</button>
   <div class="legal">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</div></form>`;
   modal.classList.add('open');setTimeout(()=>mbox.querySelector('input').focus(),300);
@@ -651,7 +697,7 @@ addEventListener('keydown',e=>{if(e.key=='Escape')modal.classList.remove('open')
 document.addEventListener('input',e=>{if(e.target.name!='phone')return;let d=e.target.value.replace(/\D/g,'');if(d[0]=='8')d='7'+d.slice(1);if(d[0]!='7')d='7'+d;d=d.slice(0,11);const p=[d.slice(1,4),d.slice(4,7),d.slice(7,9),d.slice(9,11)];e.target.value='+7'+(p[0]?' ('+p[0]:'')+(p[0].length==3?') ':'')+p[1]+(p[2]?'-'+p[2]:'')+(p[3]?'-'+p[3]:'')});
 document.addEventListener('submit',e=>{if(e.target.id!='bf')return;e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
   if(f.phone.replace(/\D/g,'').length<11){e.target.phone.focus();e.target.phone.style.borderColor='#c0392b';return}
-  saveLead(f);mbox.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="ok"><div class="o"></div><h3>Спасибо, ${f.name}!</h3><p style="color:var(--ink2)">Заявка принята. Мы перезвоним и подтвердим время. До встречи в «Ауре»!</p></div>`});
+  saveLead(f);mbox.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="ok"><div class="o"></div><h3>Спасибо, ${f.name}!</h3><p style="color:var(--ink2);font-size:17px">Заявка принята${f.time||f.date?` на <b>${f.time||''}${f.date?' '+f.date.split('-').reverse().join('.'):''}</b>`:''}.<br>Администратор свяжется с вами и подтвердит бронь.</p><p style="color:var(--mute);font-size:14px;margin-top:14px">До встречи в «Ауре»!</p></div>`});
 </script>
 </body>
 </html>
