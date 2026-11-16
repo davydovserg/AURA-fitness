@@ -136,33 +136,80 @@ nav.menu a:hover{opacity:1}
 .dphoto img.on{opacity:1;transform:none}
 .dphoto .lbl{position:absolute;left:24px;bottom:24px;z-index:2;background:rgba(255,250,245,.85);backdrop-filter:blur(8px);border-radius:30px;padding:10px 18px;font-size:13px;font-weight:600}
 
-/* RESULT / journey */
+/* JOURNEY */
 .journey{background:var(--plum);color:var(--cream);padding:clamp(90px,11vw,150px) 0;overflow:hidden}
+.journey::before{content:"";position:absolute;width:90vmax;height:90vmax;left:50%;top:60%;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(233,185,168,.16) 0,rgba(233,185,168,0) 60%);pointer-events:none}
+.journey .top{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
 .journey h2 i{color:var(--rose2)}
 .journey .eyebrow{color:var(--rose2)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:70px;position:relative}
-.steps::before{content:"";position:absolute;top:36px;left:4%;right:4%;height:1px;background:linear-gradient(90deg,transparent,rgba(233,185,168,.6),transparent)}
-.step{position:relative}
-.step .o{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-family:'Cormorant Garamond';font-size:30px;background:radial-gradient(circle,rgba(255,226,196,.95) 0,rgba(233,185,168,.5) 40%,rgba(233,185,168,0) 72%);color:var(--plum);margin-bottom:26px}
-.step h4{font-family:'Cormorant Garamond';font-size:30px;font-weight:600;line-height:1.1;margin-bottom:10px}
-.step p{font-size:15px;color:rgba(247,240,233,.72)}
+.journey .top p{max-width:360px;color:rgba(247,240,233,.78)}
+.track{position:relative;margin-top:80px}
+.rail{position:absolute;left:0;right:0;top:-30px;height:2px;background:rgba(247,240,233,.12);border-radius:2px}
+.rail i{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--rose),#ffe2c4);border-radius:2px;transition:width .2s linear}
+.rail i::after{content:"";position:absolute;right:-9px;top:-8px;width:18px;height:18px;border-radius:50%;background:#fff3e6;box-shadow:0 0 0 6px rgba(255,226,196,.25),0 0 30px 10px rgba(255,210,170,.6)}
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.stage{position:relative}
+.stage .pic{position:relative;aspect-ratio:3/4;border-radius:200px 200px 26px 26px;overflow:hidden;isolation:isolate;transition:transform .7s var(--ease)}
+.stage:hover .pic{transform:translateY(-8px)}
+.stage .pic img{width:100%;height:100%;object-fit:cover;filter:grayscale(var(--g)) brightness(var(--b));transition:filter .8s,transform 1.4s var(--ease)}
+.stage:hover .pic img{filter:none;transform:scale(1.05)}
+.stage .pic::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(255,220,180,var(--a)) 0,rgba(233,185,168,calc(var(--a)*.5)) 30%,rgba(46,31,39,0) 62%),linear-gradient(0deg,rgba(46,31,39,.88) 0,rgba(46,31,39,0) 45%);pointer-events:none}
+.stage .when{position:absolute;left:22px;right:22px;bottom:20px;z-index:2}
+.stage .when small{display:block;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--rose2);margin-bottom:4px}
+.stage .when b{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-size:clamp(32px,2.8vw,42px);line-height:1;color:#fff}
+.meter{position:absolute;top:18px;right:18px;z-index:2;width:58px;height:58px}
+.meter svg{width:100%;height:100%;transform:rotate(-90deg)}
+.meter circle{fill:none;stroke-width:3}
+.meter .bgc{stroke:rgba(255,255,255,.3)}
+.meter .fg{stroke:#ffe2c4;stroke-linecap:round;stroke-dasharray:157;stroke-dashoffset:157;transition:stroke-dashoffset 1.6s var(--ease)}
+.stage.in .meter .fg{stroke-dashoffset:var(--off)}
+.meter span{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+.stage h4{font-family:'Cormorant Garamond';font-size:27px;font-weight:600;line-height:1.15;margin:22px 0 8px}
+.stage p{font-size:15px;color:rgba(247,240,233,.8)}
+.jcta{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:60px;padding-top:34px;border-top:1px solid rgba(247,240,233,.14)}
+.jcta p{font-family:'Cormorant Garamond';font-size:clamp(24px,2.4vw,32px);flex:1;min-width:240px}
+.jcta .btn{--b:var(--cream);color:var(--ink)}
 
 /* SCHEDULE */
 .sched{padding:clamp(90px,11vw,150px) 0}
-.sched .head{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:24px;margin-bottom:40px}
-.filters{display:flex;gap:8px;flex-wrap:wrap}
-.filters button{padding:11px 18px;border-radius:30px;border:1px solid rgba(43,32,36,.16);background:transparent;font:600 13px Manrope;color:var(--ink);cursor:pointer;transition:all .3s}
+.sgrid{display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start;margin-top:44px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:18px}
+.days button{border:1px solid rgba(30,21,24,.14);background:var(--paper);border-radius:20px;padding:12px 4px 10px;cursor:pointer;font-family:Manrope;color:var(--ink);transition:all .3s var(--ease)}
+.days button small{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.days button b{display:block;font-family:'Cormorant Garamond';font-size:32px;line-height:1.05;font-weight:600}
+.days button em{display:block;font-style:normal;font-size:10px;font-weight:700;color:var(--roset);height:13px}
+.days button.on{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-3px);box-shadow:0 16px 30px -16px rgba(30,21,24,.6)}
+.days button.on small,.days button.on em{color:var(--rose2)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filters button{padding:10px 16px;border-radius:30px;border:1px solid rgba(30,21,24,.16);background:transparent;font:600 13px Manrope;color:var(--ink);cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.filters button i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--ink))}
 .filters button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.week{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
-.day h5{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);padding:0 4px 12px;border-bottom:1px solid rgba(43,32,36,.14);margin-bottom:12px}
-.slot{width:100%;text-align:left;border:0;background:var(--paper);border-radius:18px;padding:14px;margin-bottom:10px;cursor:pointer;font-family:Manrope;color:var(--ink);transition:transform .35s var(--ease),box-shadow .35s,opacity .35s;border-left:3px solid var(--c,var(--rose))}
-.slot:hover{transform:translateY(-3px);box-shadow:0 18px 30px -18px rgba(46,31,39,.4)}
-.slot b{display:block;font-size:16px}
-.slot span{font-size:13px;color:var(--ink2)}
-.slot em{display:block;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--roset);margin-top:6px;opacity:0;transition:opacity .3s}
-.slot:hover em{opacity:1}
-.slot.hide{opacity:.18;pointer-events:none}
+.classes{display:grid;gap:12px;min-height:200px}
+.cls{display:grid;grid-template-columns:96px 1fr auto;align-items:center;gap:20px;background:var(--paper);border-radius:24px;padding:18px 18px 18px 24px;border:1px solid rgba(30,21,24,.06);position:relative;overflow:hidden;animation:fq .5s var(--ease) both;transition:transform .35s var(--ease),box-shadow .35s}
+.cls::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;background:var(--c)}
+.cls:hover{transform:translateY(-2px);box-shadow:0 20px 40px -24px rgba(46,31,39,.45)}
+.cls .tm b{display:block;font-family:'Cormorant Garamond';font-size:36px;font-weight:600;line-height:1}
+.cls .tm small{font-size:12px;color:var(--mute);font-weight:600}
+.cls h4{font-size:18px;font-weight:700}
+.cls p{font-size:14px;color:var(--ink2);margin-top:2px}
+.cls .lv{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--roset);margin-top:6px}
+.cls .btn{padding:14px 22px;font-size:14px;white-space:nowrap}
+.cls.past{opacity:.45}
+.cls.past .btn{pointer-events:none;background:var(--sand);color:var(--mute)}
+.empty{padding:40px;text-align:center;border:1px dashed rgba(30,21,24,.2);border-radius:24px;color:var(--ink2)}
+.how{position:sticky;top:100px;background:var(--ink);color:var(--cream);border-radius:30px;padding:30px;overflow:hidden}
+.how::before{content:"";position:absolute;width:260px;height:260px;right:-100px;top:-100px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,196,.45),rgba(233,185,168,0) 70%)}
+.how h4{font-family:'Cormorant Garamond';font-size:30px;font-weight:600;line-height:1.1;margin-bottom:18px;position:relative}
+.how ol{list-style:none;counter-reset:h;display:grid;gap:14px;position:relative}
+.how li{counter-increment:h;display:grid;grid-template-columns:30px 1fr;gap:10px;font-size:15px;color:rgba(247,240,233,.88)}
+.how li::before{content:counter(h);width:28px;height:28px;border-radius:50%;background:rgba(233,185,168,.2);color:var(--rose2);display:grid;place-items:center;font-weight:700;font-size:13px}
+.how .btn{--b:var(--cream);color:var(--ink);width:100%;justify-content:center;margin-top:24px;position:relative}
+.how a.tel{display:block;text-align:center;margin-top:14px;font-weight:600;text-decoration:none;color:var(--rose2);position:relative}
 .note{font-size:13px;color:var(--mute);margin-top:18px}
+.msum{display:flex;gap:14px;align-items:center;background:var(--sand);border-radius:20px;padding:14px 16px;margin:6px 0 20px}
+.msum i{flex:none;width:12px;height:12px;border-radius:50%;background:var(--c,var(--rose))}
+.msum b{display:block;font-size:16px}
+.msum span{font-size:14px;color:var(--ink2)}
 
 /* PRICES */
 .prices{padding:0 0 clamp(90px,11vw,150px)}
@@ -209,12 +256,18 @@ details[open] summary::after{transform:rotate(45deg)}
 details p{color:var(--ink2);padding-top:14px;max-width:620px}
 
 /* FINAL */
-.final{padding:clamp(100px,13vw,180px) 0;text-align:center;overflow:hidden;background:var(--plum);color:var(--cream)}
-.final .orb{position:absolute;left:50%;top:50%;width:min(80vw,760px);aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(255,226,196,.55) 0,rgba(233,185,168,.25) 35%,rgba(233,185,168,0) 68%);animation:breathe 8s ease-in-out infinite}
-.final h2{position:relative;font-size:clamp(52px,9vw,140px)}
+.final{min-height:min(92vh,860px);display:flex;align-items:center;overflow:hidden;background:#1d1318;color:var(--cream)}
+.final .ph{position:absolute;inset:0;background:url(img/final.jpg) right center/cover;transform:scale(1.08);transition:transform 2.4s var(--ease)}
+.final.in .ph{transform:none}
+.final::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(29,19,24,.92) 0,rgba(29,19,24,.6) 38%,rgba(29,19,24,0) 62%)}
+.final .wrap{position:relative;z-index:2}
+.final .eyebrow{color:var(--rose2)}
+.final h2{font-size:clamp(56px,8.4vw,128px);line-height:.95;margin-top:16px}
 .final h2 i{color:var(--rose2)}
-.final p{position:relative;max-width:520px;margin:26px auto 40px;color:rgba(247,240,233,.75)}
-.final .btn{position:relative;--b:var(--cream);color:var(--ink)}
+.final p{max-width:440px;margin:26px 0 36px;color:rgba(247,240,233,.88);font-size:18px}
+.final .btns{display:flex;gap:12px;flex-wrap:wrap}
+.final .btn{--b:var(--cream);color:var(--ink)}
+.final .btn.ghost{background:rgba(255,255,255,.08);color:var(--cream);border-color:rgba(255,255,255,.3)}
 
 /* CONTACTS */
 .contacts{display:grid;grid-template-columns:1fr 1.3fr;min-height:520px}
@@ -273,8 +326,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .dlist li .mimg{display:block;border-radius:22px;aspect-ratio:4/3;object-fit:cover;margin-top:18px;width:100%}
   .dlist li .d>div{padding-left:0}
   .steps{grid-template-columns:1fr 1fr;gap:40px 22px}.steps::before{display:none}
-  .week{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
-  .day{scroll-snap-align:start}
+  .stages{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 10px;scrollbar-width:none}
+  .stage{scroll-snap-align:start}
+  .rail{display:none}
+  .track{margin-top:44px}
+  .sgrid{grid-template-columns:1fr;gap:28px}
+  .how{position:static}
+  .days{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:64px;overflow-x:auto;margin:0 -16px 14px;padding:4px 16px 8px;scrollbar-width:none}
+  .filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px 18px;padding:0 16px;scrollbar-width:none}
+  .filters button{flex:none}
+  .cls{grid-template-columns:70px 1fr;gap:6px 14px;padding:16px 16px 16px 20px}
+  .cls .tm b{font-size:30px}
+  .cls .btn{grid-column:1/-1;justify-content:center;margin-top:10px}
+  .final{min-height:0;display:block;padding:0 0 70px}
+  .final .ph{position:relative;inset:auto;height:72svh;background-image:url(img/final-m.jpg);background-position:center top}
+  .final::after{inset:auto 0 auto 0;top:calc(72svh - 220px);height:220px;background:linear-gradient(0deg,#1d1318,rgba(29,19,24,0))}
+  .final .wrap{margin-top:-90px}
+  .final .btns .btn{flex:1 1 100%;justify-content:center}
   .plans{grid-template-columns:1fr}
   .coach ul{grid-template-columns:1fr}
   .mcta{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;gap:10px;transform:translateY(120%);transition:transform .5s var(--ease)}
@@ -358,24 +426,39 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
 </div></section>
 
-<section class="journey"><div class="wrap">
-  <div class="eyebrow reveal">Что вы почувствуете</div><br>
-  <h2 class="reveal">Не «похудеть к лету»,<br>а <i>жить в теле</i>, которое любишь</h2>
-  <div class="steps">
-    <div class="step reveal"><div class="o">1</div><h4>Первое занятие</h4><p>Знакомство, мягкая диагностика осанки и гибкости, подбор нагрузки под вас.</p></div>
-    <div class="step reveal"><div class="o">2</div><h4>Через 2 недели</h4><p>Уходит зажатость в шее и пояснице, сон глубже, после тренировки — прилив сил.</p></div>
-    <div class="step reveal"><div class="o">3</div><h4>Через месяц</h4><p>Спина держится сама, появляется тонус, движения становятся плавными и собранными.</p></div>
-    <div class="step reveal"><div class="o">4</div><h4>Через 3 месяца</h4><p>Новая осанка, растяжка, о которой мечтали, и та самая «аура», которую замечают другие.</p></div>
+<section class="journey" id="journey"><div class="wrap">
+  <div class="top">
+    <div><div class="eyebrow">Что вы почувствуете</div><br><h2>Не «похудеть к лету»,<br>а <i>жить в теле</i>, которое любишь</h2></div>
+    <p>С каждой неделей аура становится ярче — это замечаете не только вы, но и все вокруг.</p>
   </div>
+  <div class="track">
+    <div class="rail"><i id="rail"></i></div>
+    <div class="stages" id="stages">
+      <div class="stage" style="--g:0.75;--b:0.72;--a:0.18;--off:118"><div class="pic"><img src="img/mfr.jpg" alt="" loading="lazy"><div class="meter"><svg viewBox="0 0 56 56"><circle class="bgc" cx="28" cy="28" r="25"/><circle class="fg" cx="28" cy="28" r="25"/></svg><span>25%</span></div><div class="when"><small>Шаг 1</small><b>Первое занятие</b></div></div><h4>Знакомство с телом</h4><p>Мягкая диагностика осанки и гибкости, нагрузка точно под вас. Уходите с лёгкостью, а не усталостью.</p></div>
+      <div class="stage" style="--g:0.45;--b:0.85;--a:0.32;--off:79"><div class="pic"><img src="img/pilates.jpg" alt="" loading="lazy"><div class="meter"><svg viewBox="0 0 56 56"><circle class="bgc" cx="28" cy="28" r="25"/><circle class="fg" cx="28" cy="28" r="25"/></svg><span>50%</span></div><div class="when"><small>Шаг 2</small><b>Через 2 недели</b></div></div><h4>Уходят зажимы</h4><p>Отпускает шея и поясница, сон становится глубже, после тренировки — прилив сил.</p></div>
+      <div class="stage" style="--g:0.18;--b:0.95;--a:0.48;--off:39"><div class="pic"><img src="img/stretch.jpg" alt="" loading="lazy"><div class="meter"><svg viewBox="0 0 56 56"><circle class="bgc" cx="28" cy="28" r="25"/><circle class="fg" cx="28" cy="28" r="25"/></svg><span>75%</span></div><div class="when"><small>Шаг 3</small><b>Через месяц</b></div></div><h4>Появляется линия</h4><p>Спина держится сама, тело в тонусе, движения становятся плавными и собранными.</p></div>
+      <div class="stage" style="--g:0;--b:1.05;--a:0.7;--off:0"><div class="pic"><img src="img/hero.jpg" alt="" loading="lazy" style="object-position:62% center"><div class="meter"><svg viewBox="0 0 56 56"><circle class="bgc" cx="28" cy="28" r="25"/><circle class="fg" cx="28" cy="28" r="25"/></svg><span>100%</span></div><div class="when"><small>Шаг 4</small><b>Через 3 месяца</b></div></div><h4>Ваша аура сияет</h4><p>Новая осанка, растяжка, о которой мечтали, и та самая лёгкость, которую замечают другие.</p></div>
+    </div>
+  </div>
+  <div class="jcta"><p>Первый шаг — одно пробное занятие.</p><button class="btn" data-book="Пробное занятие"><span class="dot"></span>Начать с пробного</button></div>
 </div></section>
 
 <section class="sched" id="sched"><div class="wrap">
-  <div class="head reveal">
-    <div><div class="eyebrow">Расписание</div><br><h2>Выберите <i>своё</i> время</h2></div>
-    <div class="filters" id="filt"></div>
+  <div class="reveal"><div class="eyebrow">Расписание и запись</div><br><h2>Выберите <i>своё</i> время</h2></div>
+  <div class="sgrid">
+    <div>
+      <div class="days" id="days"></div>
+      <div class="filters" id="filt"></div>
+      <div class="classes" id="classes"></div>
+      <p class="note">Расписание может меняться — администратор подтвердит время при звонке.</p>
+    </div>
+    <aside class="how">
+      <h4>Запись за 20 секунд</h4>
+      <ol><li>Выберите день и занятие</li><li>Оставьте имя и телефон</li><li>Администратор перезвонит и подтвердит</li></ol>
+      <button class="btn" data-book="">Не нашли время? Подберём</button>
+      <a class="tel" href="tel:+79186433558">или позвоните: +7 918 643-35-58</a>
+    </aside>
   </div>
-  <div class="week reveal" id="week"></div>
-  <p class="note">Нажмите на занятие — запишем именно на него. Расписание уточняйте у администратора, места в группах ограничены.</p>
 </div></section>
 
 <section class="prices" id="prices"><div class="wrap">
@@ -421,10 +504,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
 </div></section>
 
-<section class="final"><div class="orb"></div><div class="wrap">
-  <h2 class="reveal">Почувствуйте<br>свою <i>ауру</i></h2>
-  <p class="reveal">Оставьте телефон — администратор перезвонит, подберёт удобное время и ответит на вопросы.</p>
-  <button class="btn reveal" data-book><span class="dot"></span>Записаться на пробное</button>
+<section class="final" id="final"><div class="ph"></div><div class="wrap">
+  <div class="eyebrow">Ваш первый шаг</div>
+  <h2>Почувствуйте<br>свою <i>ауру</i></h2>
+  <p>Оставьте телефон — администратор перезвонит, подберёт удобное время и ответит на все вопросы.</p>
+  <div class="btns"><button class="btn" data-book="Пробное занятие"><span class="dot"></span>Записаться на пробное</button><a class="btn ghost" href="tel:+79186433558">Позвонить</a></div>
 </div></section>
 
 <section class="contacts" id="contacts">
@@ -495,10 +579,32 @@ dol.addEventListener('mouseover',e=>{const li=e.target.closest('li');if(li&&matc
 setDir(0);
 
 /* ===== SCHEDULE ===== */
-const filt=document.getElementById('filt'),week=document.getElementById('week');
-filt.innerHTML='<button class="on" data-f="all">Все</button>'+DIRS.map(d=>`<button data-f="${d.id}">${d.name}</button>`).join('');
-week.innerHTML=Object.entries(SCHED).map(([day,ss])=>`<div class="day"><h5>${day}</h5>${ss.map(([t,id])=>`<button class="slot" style="--c:${byId[id].c}" data-k="${id}" data-book="${byId[id].name}" data-time="${day} ${t}"><b>${t}</b><span>${byId[id].name}</span><em>Записаться →</em></button>`).join('')}</div>`).join('');
-filt.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;filt.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x==b));week.querySelectorAll('.slot').forEach(s=>s.classList.toggle('hide',b.dataset.f!='all'&&s.dataset.k!=b.dataset.f))});
+const WD=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const DESC={fitness:'Сила и тонус, лёгкие гантели',pilates:'Осанка, кор, глубокие мышцы',stretch:'Гибкость и шпагаты',mfr:'Роллы и мячи, снятие зажимов',ballet:'Боди-балет у станка'};
+const days=document.getElementById('days'),filt=document.getElementById('filt'),cls=document.getElementById('classes');
+const today=new Date();today.setHours(0,0,0,0);
+const D=[...Array(7)].map((_,k)=>{const d=new Date(today);d.setDate(d.getDate()+k);return d});
+let selDay=0,selDir='all';
+days.innerHTML=D.map((d,k)=>`<button data-k="${k}"><small>${WD[d.getDay()]}</small><b>${d.getDate()}</b><em>${k==0?'сегодня':k==1?'завтра':''}</em></button>`).join('');
+filt.innerHTML='<button class="on" data-f="all">Все</button>'+DIRS.map(d=>`<button data-f="${d.id}" style="--c:${d.c}"><i></i>${d.name}</button>`).join('');
+function renderCls(){
+  days.querySelectorAll('button').forEach((b,k)=>b.classList.toggle('on',k==selDay));
+  const d=D[selDay],list=(SCHED[WD[d.getDay()]]||[]).filter(x=>selDir=='all'||x[1]==selDir);
+  const now=new Date(),label=`${WD[d.getDay()]}, ${d.getDate()} ${MON[d.getMonth()]}`;
+  cls.innerHTML=list.length?list.map(([t,id],n)=>{const x=byId[id],[h,m]=t.split(':');const st=new Date(d);st.setHours(+h,+m);const past=st<now;
+    return `<div class="cls${past?' past':''}" style="--c:${x.c};animation-delay:${n*60}ms"><div class="tm"><b>${t}</b><small>55 минут</small></div><div><h4>${x.name}</h4><p>${DESC[id]}</p><span class="lv">${past?'уже прошло':'любой уровень · группа'}</span></div><button class="btn" data-book="${x.name}" data-time="${label} · ${t}" data-c="${x.c}">Записаться</button></div>`}).join('')
+   :`<div class="empty">В этот день ${selDir=='all'?'занятий нет':'нет этого направления'} — выберите другой день или <a href="#" data-book="">попросите подобрать время</a>.</div>`;
+}
+days.addEventListener('click',e=>{const b=e.target.closest('button');if(b){selDay=+b.dataset.k;renderCls()}});
+filt.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;selDir=b.dataset.f;filt.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x==b));renderCls()});
+renderCls();
+
+/* ===== JOURNEY ===== */
+const rail=document.getElementById('rail'),stg=[...document.querySelectorAll('.stage')];
+const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.4});
+stg.forEach(x=>io2.observe(x));
+const fin=document.getElementById('final');new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&fin.classList.add('in')),{threshold:.2}).observe(fin);
+addEventListener('scroll',()=>{const r=document.getElementById('stages').getBoundingClientRect();const p=Math.min(1,Math.max(0,(innerHeight*.8-r.top)/(r.height+innerHeight*.2)));rail.style.width=p*100+'%'},{passive:true});
 
 /* ===== GALLERY ===== */
 const G=['hero','pilates','stretch','ballet','mfr','fitness','feet'];
@@ -529,8 +635,8 @@ renderQ();
 
 /* ===== BOOKING MODAL ===== */
 const modal=document.getElementById('modal'),mbox=document.getElementById('mbox');
-function openBook(dir='',time=''){
-  mbox.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="eyebrow">Запись</div><h3>${time?'Занятие '+time:'Пробное занятие'}</h3><p>Оставьте контакты — администратор перезвонит в течение 15 минут в рабочее время и подтвердит запись.</p>
+function openBook(dir='',time='',c=''){
+  mbox.innerHTML=`<button class="x" aria-label="Закрыть">×</button><div class="eyebrow">Запись</div><h3>${dir||'Пробное занятие'}</h3>${time?`<div class="msum" style="--c:${c||'var(--rose)'}"><i></i><div><b>${time}</b><span>Место закрепим после звонка администратора</span></div></div>`:''}<p>Оставьте контакты — администратор перезвонит в течение 15 минут в рабочее время и подтвердит запись.</p>
   <form id="bf"><label class="field"><span>Имя</span><input name="name" required autocomplete="given-name" placeholder="Как к вам обращаться"></label>
   <label class="field"><span>Телефон</span><input name="phone" required type="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"></label>
   <label class="field"><span>Направление</span><select name="dir"><option value="">Подскажите, что выбрать</option>${['Пробное занятие','Абонемент 8 занятий','Персональная тренировка',...DIRS.map(d=>d.name)].map(n=>`<option ${n==dir?'selected':''}>${n}</option>`).join('')}</select></label>
@@ -539,7 +645,7 @@ function openBook(dir='',time=''){
   <div class="legal">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</div></form>`;
   modal.classList.add('open');setTimeout(()=>mbox.querySelector('input').focus(),300);
 }
-document.addEventListener('click',e=>{const b=e.target.closest('[data-book]');if(b){e.preventDefault();openBook(b.dataset.book,b.dataset.time||'')}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-book]');if(b){e.preventDefault();openBook(b.dataset.book,b.dataset.time||'',b.dataset.c||'')}
   if(e.target==modal||e.target.closest('.x'))modal.classList.remove('open')});
 addEventListener('keydown',e=>{if(e.key=='Escape')modal.classList.remove('open')});
 document.addEventListener('input',e=>{if(e.target.name!='phone')return;let d=e.target.value.replace(/\D/g,'');if(d[0]=='8')d='7'+d.slice(1);if(d[0]!='7')d='7'+d;d=d.slice(0,11);const p=[d.slice(1,4),d.slice(4,7),d.slice(7,9),d.slice(9,11)];e.target.value='+7'+(p[0]?' ('+p[0]:'')+(p[0].length==3?') ':'')+p[1]+(p[2]?'-'+p[2]:'')+(p[3]?'-'+p[3]:'')});
