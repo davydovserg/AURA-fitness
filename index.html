@@ -55,6 +55,17 @@ nav.menu a:hover{opacity:1}
 .hero{height:100svh;min-height:640px;overflow:hidden;color:var(--ink)}
 .hero .bg{position:absolute;inset:-4%;background:url(img/hero.jpg) center/cover;transform:scale(1.06);animation:heroIn 2.6s var(--ease) forwards}
 @keyframes heroIn{to{transform:scale(1)}}
+.haloA{position:absolute;z-index:1;left:66%;top:48%;width:46vw;height:78vh;translate:-50% -50%;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse,rgba(255,232,200,.0) 18%,rgba(255,214,170,.8) 38%,rgba(240,170,150,.4) 55%,rgba(240,170,150,0) 72%);mix-blend-mode:screen;opacity:0;transform:scale(.6);animation:halo 3.2s 1s var(--ease) forwards,haloB 6s 4.2s ease-in-out infinite}
+@keyframes halo{to{opacity:1;transform:scale(1)}}
+@keyframes haloB{50%{opacity:.7;transform:scale(1.06)}}
+.sparks{position:absolute;z-index:2;left:66%;top:50%;width:40vw;height:70vh;translate:-50% -50%;pointer-events:none}
+.sparks i{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff6e6;box-shadow:0 0 10px 3px rgba(255,214,170,.9);opacity:0;animation:spark 5s ease-in infinite}
+.sparks i:nth-child(1){left:20%;top:70%;animation-delay:1.6s}.sparks i:nth-child(2){left:35%;top:80%;animation-delay:2.4s}
+.sparks i:nth-child(3){left:55%;top:75%;animation-delay:1.9s}.sparks i:nth-child(4){left:72%;top:65%;animation-delay:3.1s}
+.sparks i:nth-child(5){left:45%;top:60%;animation-delay:2.8s}.sparks i:nth-child(6){left:82%;top:78%;animation-delay:3.6s}
+.sparks i:nth-child(7){left:28%;top:55%;animation-delay:4.2s}.sparks i:nth-child(8){left:63%;top:85%;animation-delay:4.6s}
+@keyframes spark{0%{opacity:0;transform:translateY(0) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translateY(-42vh) scale(1.2)}}
+
 .hero .bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(247,240,233,.9) 0,rgba(247,240,233,.55) 30%,rgba(247,240,233,0) 50%),linear-gradient(0deg,rgba(247,240,233,.9) 0,rgba(247,240,233,0) 26%)}
 .glow{position:absolute;z-index:2;width:520px;height:520px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,226,196,.75) 0,rgba(233,185,168,.35) 35%,rgba(233,185,168,0) 68%);mix-blend-mode:soft-light;translate:-50% -50%;left:70%;top:45%;transition:left 1.2s var(--ease),top 1.2s var(--ease)}
@@ -335,6 +346,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .hero .bg video{object-position:62% 30%}
   .hero::before{inset:auto 0 auto 0;top:calc(62svh - 140px);height:140px;background:linear-gradient(0deg,var(--cream),rgba(247,240,233,0))}
   .glow{display:none}
+  .haloA{top:calc(64px + 31svh);left:62%;width:110vw;height:60svh}
+  .sparks{top:calc(64px + 31svh);left:62%;width:90vw;height:56svh}
   .hero .wrap{height:auto;padding:0 0 34px;margin-top:-58px;justify-content:flex-start}
   .hero h1{font-size:clamp(68px,21vw,96px);margin:14px 0 20px}
   .hero h1 .w:nth-child(2) span{padding-left:.2em}
@@ -407,7 +420,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <section class="hero">
   <div class="bg"><video id="hv" muted playsinline autoplay preload="auto" poster="img/hero.jpg"><source src="img/hero.mp4" type="video/mp4"></video></div>
-  <div class="glow" id="glow"></div>
+  <div class="glow" id="glow"></div><div class="haloA"></div><div class="sparks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="wrap">
     <div class="eyebrow">Студия Екатерины · Новороссийск</div>
     <h1><span class="w"><span>Аура</span></span><span class="w"><span>движения</span></span></h1>
